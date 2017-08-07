@@ -1,12 +1,8 @@
-package utils;
-
-public class RunDeployer {
+public class DeployTool {
 
     public static void main(String[] args) {
-
         OpenDeployer od = new OpenDeployer();
-        od.deployToDevQaAndStaging("");
-
+        od.deployToDevQaAndStaging(args[0]);
     }
 
 }

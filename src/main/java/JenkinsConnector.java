@@ -80,7 +80,7 @@ public class JenkinsConnector {
                 JobWithDetails job = jobs.get(jobName).details();
                 String consoleOutput = job.getBuildByNumber(buildNumber).details().getConsoleOutputText();
                 if (consoleOutput.contains("Finished: SUCCESS") && consoleOutput.contains(checkTerm)) {
-                    System.out.println("Build " + buildNumber + " of " + jobName + " was successful!");
+                    System.out.println("Build " + buildNumber + " of " + jobName + " in " + jenkinsInstanceName + " was successful!");
                     success = true;
                 } else {
                     System.out.println("Polling build " + buildNumber + " of " + jobName + " in " + jenkinsInstanceName + " until successful...");

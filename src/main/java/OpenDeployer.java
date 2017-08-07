@@ -8,7 +8,7 @@ public class OpenDeployer {
     private JenkinsConnector ciBuild;
     private JenkinsConnector deployQa;
     private JenkinsConnector deployStaging;
-    private String buildpackRepo = "git@github.tools.tax.service.gov.uk:HMRC/buildpack-java-jar.git";
+    private final String BUILDPACK_REPO = "git@github.tools.tax.service.gov.uk:HMRC/buildpack-java-jar.git";
 
     public OpenDeployer() {
         ciDev = new JenkinsConnector("ci-dev");
@@ -25,7 +25,7 @@ public class OpenDeployer {
             Map<String, String> createReleaseSlugParams = new HashMap<String, String>();
             createReleaseSlugParams.put("APP_NAME", appName);
             createReleaseSlugParams.put("APP_VERSION", devReleaseVersion);
-            createReleaseSlugParams.put("BUILDPACK_REPO", buildpackRepo);
+            createReleaseSlugParams.put("BUILDPACK_REPO", BUILDPACK_REPO);
 
             int createReleaseSlugBuildNumber = ciDev.runJob("create-a-release-slug", createReleaseSlugParams);
             System.out.println("Creating dev release slug for version " + devReleaseVersion + " of " + appName + "...");
@@ -69,7 +69,7 @@ public class OpenDeployer {
                 Map<String, String> createReleaseSlugParams = new HashMap<String, String>();
                 createReleaseSlugParams.put("APP_NAME", appName);
                 createReleaseSlugParams.put("APP_VERSION", taggedReleaseVersion);
-                createReleaseSlugParams.put("BUILDPACK_REPO", buildpackRepo);
+                createReleaseSlugParams.put("BUILDPACK_REPO", BUILDPACK_REPO);
 
                 int createReleaseSlugBuildNumber = ciBuild.runJob("create-a-release-slug", createReleaseSlugParams);
                 System.out.println("Creating release slug for version " + taggedReleaseVersion + " of " + appName + "...");

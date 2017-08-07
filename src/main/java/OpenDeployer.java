@@ -8,9 +8,7 @@ public class OpenDeployer {
     private JenkinsConnector ciBuild;
     private JenkinsConnector deployQa;
     private JenkinsConnector deployStaging;
-    private String appName;
     private String buildpackRepo = "git@github.tools.tax.service.gov.uk:HMRC/buildpack-java-jar.git";
-    private String devReleaseVersion;
 
     public OpenDeployer() {
         ciDev = new JenkinsConnector("ci-dev");
@@ -22,9 +20,7 @@ public class OpenDeployer {
 
     private void deployToDev(String appName) {
         try {
-            this.appName = appName;
-
-            devReleaseVersion = ciOpen.getLastSuccessfulBuildDescription(this.appName);
+            String devReleaseVersion = ciOpen.getLastSuccessfulBuildDescription(appName);
 
             Map<String, String> createReleaseSlugParams = new HashMap<String, String>();
             createReleaseSlugParams.put("APP_NAME", appName);
@@ -54,7 +50,7 @@ public class OpenDeployer {
 
     private void deployToQaAndStaging(String appName) {
         try {
-            this.appName = appName;
+            String devReleaseVersion = ciOpen.getLastSuccessfulBuildDescription(appName);
 
             Map<String, String> createReleaseParams = new HashMap<String, String>();
             createReleaseParams.put("ARTEFACT_NAME", appName);

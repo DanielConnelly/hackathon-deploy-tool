@@ -82,6 +82,9 @@ public class JenkinsConnector {
                 if (consoleOutput.contains("Finished: SUCCESS") && consoleOutput.contains(checkTerm)) {
                     System.out.println("Build " + buildNumber + " of " + jobName + " in " + jenkinsInstanceName + " was successful!");
                     success = true;
+                } else if (consoleOutput.contains("Finished: Failure")) {
+                    System.out.println("Job Failed");
+                    System.exit(1);
                 } else {
                     System.out.println("Polling build " + buildNumber + " of " + jobName + " in " + jenkinsInstanceName + " until successful...");
                 }

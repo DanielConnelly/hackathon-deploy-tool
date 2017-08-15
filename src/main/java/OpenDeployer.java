@@ -11,11 +11,11 @@ public class OpenDeployer {
     private final String BUILDPACK_REPO = "git@github.tools.tax.service.gov.uk:HMRC/buildpack-java-jar.git";
 
     public OpenDeployer() {
-        ciDev = new JenkinsConnector("ci-dev");
-        ciOpen = new JenkinsConnector("ci-open");
-        ciBuild = new JenkinsConnector("ci-build");
-        deployQa = new JenkinsConnector("deploy-qa");
-        deployStaging = new JenkinsConnector("deploy-staging");
+        ciDev = new JenkinsConnector("ci-dev", "ci");
+        ciOpen = new JenkinsConnector("ci-open", "ci");
+        ciBuild = new JenkinsConnector("ci-build", "ci");
+        deployQa = new JenkinsConnector("deploy-qa", "deploy");
+        deployStaging = new JenkinsConnector("deploy-staging", "deploy");
     }
 
     private void deployToDev(String appName) {

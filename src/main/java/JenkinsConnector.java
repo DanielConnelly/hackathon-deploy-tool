@@ -2,6 +2,7 @@ import com.offbytwo.jenkins.JenkinsServer;
 import com.offbytwo.jenkins.model.Job;
 import com.offbytwo.jenkins.model.JobWithDetails;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -21,13 +22,15 @@ public class JenkinsConnector {
     private String jenkinsInstanceName;
     private Map<String, Job> jobs;
 
-    public JenkinsConnector(String jenkinsInstanceName) {
+    public JenkinsConnector(String jenkinsInstanceName, String ciOrdeploy) {
         try {
-            input = new FileInputStream("credentials.properties");
+            String home = System.getProperty("user.home");
+            String dir = home + File.separator +".credentials/credentials.properties";
+            input = new FileInputStream(dir);
             props.load(input);
             url = props.getProperty(jenkinsInstanceName + "-url");
-            username = props.getProperty(jenkinsInstanceName + "-username");
-            password = props.getProperty(jenkinsInstanceName + "-password");
+            username = props.getProperty("username");
+            password = props.getProperty(ciOrdeploy + "-password");
             jenkins = new JenkinsServer(new URI(url), username, password);
             this.jenkinsInstanceName = jenkinsInstanceName;
             jobs = jenkins.getJobs();

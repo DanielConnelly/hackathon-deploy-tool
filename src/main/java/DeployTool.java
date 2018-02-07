@@ -4,6 +4,8 @@ public class DeployTool {
 
             int length = args.length;
 
+            //possible feature switch.
+
             for(int y = 0; y < length;) {
                 OpenDeployer od = new OpenDeployer();
                 String appName = args[y];

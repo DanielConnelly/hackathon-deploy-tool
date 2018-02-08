@@ -79,8 +79,8 @@ public class OpenDeployer {
                     Thread.sleep(30000);
 
                     Map<String, String> deployMicroserviceParams = new HashMap<String, String>();
-                    deployMicroserviceParams.put("SERVICE", "voa-property-linking-frontend");
-                    deployMicroserviceParams.put("SERVICE_VERSION", "0.318.0");
+                    deployMicroserviceParams.put("SERVICE", appName);
+                    deployMicroserviceParams.put("SERVICE_VERSION", taggedReleaseVersion);
                     deployMicroserviceParams.put("DEPLOYMENT_BRANCH", "master");
 
                     deployQa.runJob("deploy-microservice", deployMicroserviceParams);

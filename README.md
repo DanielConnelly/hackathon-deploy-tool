@@ -6,8 +6,8 @@ A tool made in 1 day for the HMRC DDC Worthing hackathon (19-07-17) to automate 
 - Uses the Jenkins API Client for java to interact with jenkins which can be found here: https://github.com/jenkinsci/java-client-api
 
 # How to use
-- Replace credentials.properties.example with credentials.properties and enter your jenkins credentials in here.
-- Run 'DeployTool' with a single argument, which should be your app name.
+- add credentials.properties to ~/.credentials/credentials.properties with your environment credentials
+- Run 'DeployTool' with the list of arguments you wish to deploy, which should be your app name.
 
 # You should know
 - This does not show you the console output for the jobs, you will still need to monitor the existing jobs on their own if you want to see what is happening.

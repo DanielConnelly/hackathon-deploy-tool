@@ -6,7 +6,7 @@ public class OpenDeployer {
     private JenkinsConnector ciOpen;
     private JenkinsConnector ciDev;
     private JenkinsConnector ciBuild;
-    private JenkinsConnector deployQa;
+    public JenkinsConnector deployQa;
     private JenkinsConnector deployStaging;
     private final String BUILDPACK_REPO = "git@github.tools.tax.service.gov.uk:HMRC/buildpack-java-jar.git";
 
@@ -79,8 +79,8 @@ public class OpenDeployer {
                     Thread.sleep(30000);
 
                     Map<String, String> deployMicroserviceParams = new HashMap<String, String>();
-                    deployMicroserviceParams.put("APP", appName);
-                    deployMicroserviceParams.put("VERSION", taggedReleaseVersion);
+                    deployMicroserviceParams.put("SERVICE", appName);
+                    deployMicroserviceParams.put("SERVICE_VERSION", taggedReleaseVersion);
                     deployMicroserviceParams.put("DEPLOYMENT_BRANCH", "master");
 
                     deployQa.runJob("deploy-microservice", deployMicroserviceParams);
